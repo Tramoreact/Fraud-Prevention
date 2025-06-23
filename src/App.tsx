@@ -37,7 +37,7 @@ const FraudPreventionShield = () => {
       const response = await axios.get("/api/suspicious");
       if (response?.status === 200) {
         setUsers(response.data.data);
-        console.log("Fetched Data:", response.data.data);
+        console.log("Fetched users Data:", response.data.data);
       }
     } catch (error) {
       console.error("Error fetching users", error);
