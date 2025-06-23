@@ -239,6 +239,8 @@ const FraudPreventionShield = () => {
   const [endDate, setEndDate] = useState("");
   const [searchClicked, setSearchClicked] = useState(false);
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+
   const fetchData = async () => {
     try {
       const response = await axios.get("/api/suspicious");
