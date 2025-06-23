@@ -224,6 +224,8 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import PropTypes from 'prop-types';
+
 
 const statusColors: Record<string, "success" | "error" | "warning"> = {
   Low: "success",
@@ -241,17 +243,17 @@ const FraudPreventionShield = () => {
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("/api/suspicious");
-      if (response?.status === 200) {
-        setUsers(response.data.data);
-        console.log("Fetched Data:", response.data.data);
-      }
-    } catch (error) {
-      console.error("Error fetching users", error);
+ const fetchData = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/suspicious`);
+    if (response?.status === 200) {
+      setUsers(response.data.data);
+      console.log("Fetched Data response:", response.data.data);
     }
-  };
+  } catch (error) {
+    console.error("Error fetching users", error);
+  }
+};
 
   useEffect(() => {
     fetchData();

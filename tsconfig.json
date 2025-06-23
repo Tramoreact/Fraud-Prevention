@@ -11,6 +11,9 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "types": ["vite/client"]
   },
   "include": ["src", "vite-env.d.ts"]
