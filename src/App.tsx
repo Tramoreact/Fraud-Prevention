@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import {
   Box,
   Button,
-  Chip,
-  IconButton,
   MenuItem,
   Pagination,
   Paper,
@@ -18,9 +16,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import axios from "axios";
-import { red } from "@mui/material/colors";
 
 const statusColors: Record<string, "success" | "error" | "warning"> = {
   Low: "success",
@@ -31,10 +27,10 @@ const statusColors: Record<string, "success" | "error" | "warning"> = {
 const FraudPreventionShield = () => {
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState<any[]>([]);
-  const [statusFilter, setStatusFilter] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [searchClicked, setSearchClicked] = useState(false); // To trigger filter
+  // const [statusFilter, setStatusFilter] = useState("");
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
+  // const [searchClicked, setSearchClicked] = useState(false); // To trigger filter
 
   const fetchData = async () => {
     try {
