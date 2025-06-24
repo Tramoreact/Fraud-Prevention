@@ -17,6 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
+import Config from "./Config"; // make sure the import path is correct
 
 const statusColors: Record<string, "success" | "error" | "warning"> = {
   Low: "success",
@@ -34,7 +35,8 @@ const FraudPreventionShield = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/suspicious");
+      // const response = await axios.get("/api/suspicious");
+      const response = await axios.get(`${Config.API_URL}/suspicious`);
       if (response?.status === 200) {
         setUsers(response.data.data);
         console.log("Fetched users Data:", response.data.data);
