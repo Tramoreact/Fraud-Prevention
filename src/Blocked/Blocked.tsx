@@ -1,9 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useState, useEffect } from "react";
 import {
   Box,
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   MenuItem,
@@ -29,28 +29,13 @@ const statusColors: Record<string, "success" | "error" | "warning"> = {
   Medium: "warning",
 };
 
-type formvaluesProps = {
-  type: string;
-  value: string;
-  remarks: string;
-};
 
 const Blocked = () => {
     const navigete= useNavigate();
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState<any[]>([]);
-  const [open, setOpen] = useState(false);
-  const [openSecondDialog, setOpenSecondDialog] = useState(false);
-  const [selectedType, setSelectedType] = useState<string>("");
   const [successDialog, setSuccessDialog] = useState(false);
-  const [formData, setFormData] = useState<formvaluesProps>({
-    type: "",
-    value: "",
-    remarks: "",
-  });
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  
   const handleClick= ()=> {
     navigete("/dashboard")
   }
