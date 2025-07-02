@@ -360,7 +360,7 @@
 import AppRoutes from "./Routes/Approutes";
 
 const App = () => {
-  return <AppRoutes />;
+  return <AppRoutes />;;
 };
 
 export default App;
