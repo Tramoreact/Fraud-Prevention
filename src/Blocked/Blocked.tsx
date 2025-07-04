@@ -29,16 +29,15 @@ const statusColors: Record<string, "success" | "error" | "warning"> = {
   Medium: "warning",
 };
 
-
 const Blocked = () => {
-    const navigete= useNavigate();
+  const navigete = useNavigate();
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState<any[]>([]);
   const [successDialog, setSuccessDialog] = useState(false);
-  
-  const handleClick= ()=> {
-    navigete("/dashboard")
-  }
+
+  const handleClick = () => {
+    navigete("/dashboard");
+  };
 
   const fetchData = async () => {
     try {
@@ -63,37 +62,37 @@ const Blocked = () => {
   );
   const totalPages = Math.ceil(users.length / recordsPerPage);
 
-//   const handleSubmitBlock = async () => {
-//     try {
-//       const params = new URLSearchParams();
-//       params.append("type", formData.type);
-//       params.append("value", formData.value);
-//       params.append("remarks", formData.remarks);
+  //   const handleSubmitBlock = async () => {
+  //     try {
+  //       const params = new URLSearchParams();
+  //       params.append("type", formData.type);
+  //       params.append("value", formData.value);
+  //       params.append("remarks", formData.remarks);
 
-//       console.log("Sending formvalues", params.toString());
+  //       console.log("Sending formvalues", params.toString());
 
-//       const response = await axios.post(
-//         `${Config.API_URL}/suspicious`,
-//         params,
-//         {
-//           headers: {
-//             "Content-Type": "application/x-www-form-urlencoded",
-//           },
-//         }
-//       );
+  //       const response = await axios.post(
+  //         `${Config.API_URL}/suspicious`,
+  //         params,
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/x-www-form-urlencoded",
+  //           },
+  //         }
+  //       );
 
-//       if (response.status === 200) {
-//         console.log("formdata", formData);
-//         fetchData();
-//         setOpenSecondDialog(false);
-//         setFormData({ type: "", value: "", remarks: "" });
-//         setSuccessDialog(true);
-//       }
-//     } catch (error: any) {
-//       console.error("Error:", error.response?.data || error.message);
-//       alert("Failed ");
-//     }
-//   };
+  //       if (response.status === 200) {
+  //         console.log("formdata", formData);
+  //         fetchData();
+  //         setOpenSecondDialog(false);
+  //         setFormData({ type: "", value: "", remarks: "" });
+  //         setSuccessDialog(true);
+  //       }
+  //     } catch (error: any) {
+  //       console.error("Error:", error.response?.data || error.message);
+  //       alert("Failed ");
+  //     }
+  //   };
 
   return (
     <Box p={2}>
@@ -199,10 +198,7 @@ const Blocked = () => {
         </Dialog> */}
       </Stack>
 
-      <Dialog
-        open={successDialog}
-        onClose={() => setSuccessDialog(false)}
-      >
+      <Dialog open={successDialog} onClose={() => setSuccessDialog(false)}>
         <DialogTitle>Success</DialogTitle>
         <DialogContent>
           <Typography>
@@ -221,14 +217,13 @@ const Blocked = () => {
                 <TableCell>Type</TableCell>
                 <TableCell>Value</TableCell>
                 <TableCell>Remarks</TableCell>
+                <TableCell>Attachments</TableCell>
                 {/* <TableCell>Triggred Values</TableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
               {paginatedData.map((row: any, idx: number) => {
-                const createdAt = new Date(
-                  row.created_at.$date
-                );
+                const createdAt = new Date(row.created_at);
                 const formattedDate = createdAt.toLocaleDateString();
                 const formattedTime = createdAt.toLocaleTimeString();
 
@@ -238,20 +233,22 @@ const Blocked = () => {
                       {formattedDate} <br />
                       {formattedTime}
                     </TableCell>
+                    <TableCell>{row._id}</TableCell>
+                    <TableCell>{row.type}</TableCell>
+                    <TableCell>{row.value}</TableCell>
+                    <TableCell>{row.remarks}</TableCell>
+                    {/* <TableCell>
+                        {row.attachment_download_url}
+                    </TableCell> */}
                     <TableCell>
-                        {row._id.$oid}
+                      <a
+                        href={row.attachment_download_url}
+                        // target="_blank"
+                        // rel="noopener noreferrer"
+                      >
+                        Download Attachment
+                      </a>
                     </TableCell>
-                    <TableCell>
-                        {row.type}
-                    </TableCell>
-                    <TableCell>
-                        {row.value}
-                    </TableCell>
-                    <TableCell>
-                        {row.remarks}
-                    </TableCell>
-
-                   
                   </TableRow>
                 );
               })}
