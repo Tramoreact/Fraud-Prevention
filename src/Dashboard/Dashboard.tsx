@@ -509,7 +509,7 @@ const Dashboard = () => {
                 "Driving License",
                 "Email",
                 "Entity Name",
-                "Geo Location",
+                "GEO Location",
                 "GST Number",
                 "IFSC Code",
                 "IMEI Number",
